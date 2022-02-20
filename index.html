@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9415cf14fc.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body style="background-color: rgb(34, 32, 32);">
+    <!-- menu overlay -->
+    <div class="container-fluid" id="menu-overlay">
+        <div id="cross">
+            <button class="close" onclick="hide()" style="color: white;">
+                <i class="fa fa-close fa-3x"></i>
+            </button>
+        </div>
+        <div class="container d-flex m">
+            <button class="menu-buttons" id="1" onclick="mode_input(1)">
+                <i class="fa-solid fa-hand-peace"></i>
+                <div>
+                    <h5>
+                        Peacefull
+                    </h5>
+                </div>
+            </button>
+            <button class="menu-buttons" id="0" onclick="mode_input(0)">
+                <i class="fa-solid fa-dove"></i>
+                <div>
+                    <h5>
+                        Normal
+                    </h5>
+                </div>
+            </button>
+            <button class="menu-buttons" id="2" onclick="mode_input(2)">
+                <i class="fa-solid fa-skull-crossbones"></i>
+                <div>
+                    <h5>
+                        Impossible
+                    </h5>
+                </div>
+            </button>
+            <button class="menu-buttons" onclick="show_overlays()">
+                <i class='fas fa-random' ></i>
+                <div>
+                    <h5>
+                        Number of Rounds
+                    </h5>
+                </div>
+            </button>
+            <button class="menu-buttons" onclick="hide()">
+                <i class='fas fa-arrow-left'></i>
+                <div>
+                    <h5>
+                        Back
+                    </h5>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- rounds overlay -->
+    <div class="rounds" id="round-main">
+        <div class="round-items" id="round1" onclick="round_input(1)">1</div>
+        <div class="round-items" id="round2" onclick="round_input(2)">2</div>
+        <div class="round-items" id="round3" onclick="round_input(3)">3</div>
+        <div class="round-items" id="round4" onclick="round_input(4)">4</div>
+        <div class="round-items" id="round5" onclick="round_input(5)">5</div>
+        <div class="round-items" id="round6" onclick="round_input(6)">6</div>
+        <div class="round-items" id="round7" onclick="round_input(7)">7</div>
+    </div>
+
+    <!-- game overlay -->
+    <div class="main-game">
+        <!-- options -->
+        <div class="container-fluid d-flex postion-absolute " style="margin:0px; padding:0px; width: 100%;justify-content: space-between;">    
+            <button class="button-top iconed" type="button" onclick="show()" style="border-radius:0% 0% 50% 0%;">
+                    <i class="material-icons">menu</i>
+                </button>
+                <div id="name" style="padding-top: 5px; position: relative; top: 5px; color: aliceblue;" >
+                    <h1>
+                        Rock Paper Scissor
+                    </h1>
+                </div>
+                <button class="button-top iconed" onclick="ini()" style="border-radius:0% 0% 0% 50%;">
+                    <i class='fas fa-play fa-1x'></i>
+                </button>
+        </div>  
+
+        <!-- result -->
+
+        <div class="result container-fluid">
+            <h1 id="display" style="margin:0px; display: flex;justify-content: center;align-items: center;width:100vw;color: aliceblue; position: absolute;top: 18vh;">
+            </h1>
+        </div>
+        <!-- game overlays
+        rock <i class='fas fa-hand-rock'></i>
+        paper  <i class='fas fa-hand-paper'></i>
+        scissor <i class='fas fa-hand-scissors'></i> -->
+        <div class="container-fluid game" style="color: aliceblue; font-size: 22vmin;">
+            <div style="padding-left:20%">
+            <i class='fas fa-hand-rock leftside' id="1l" style="display: block;"></i>
+            <i class='fas fa-hand-paper leftside ' id="2l" style="display: none;"></i>
+            <i class='fas fa-hand-scissors ' id="3l" style="transform: scale(-1,1);display: none;"></i> 
+            </div>
+            <div style="padding-right:20%">
+            <i class='fas fa-hand-rock rightside' id="1r" style="display: block;"></i>
+            <i class='fas fa-hand-paper rightside ' id="2r" style="display: none;"></i>
+            <i class='fas fa-hand-scissors ' id="3r" style="display: none;"></i>
+            </div> 
+        </div> 
+        <!-- control overlay -->
+        <div class="coo">
+            <div class="count d-flex">
+                <div class="user">
+                    <div class="u" id="u1"></div>
+                    <div class="u" id="u2"></div>
+                    <div class="u" id="u3"></div>
+                    <div class="u" id="u4"></div>
+                    <div class="u" id="u5"></div>
+                    <div class="u" id="u6"></div>
+                    <div class="u" id="u7"></div>
+                </div>
+                <div class="oppo">
+                    <div class="o" id="o1"></div>
+                    <div class="o" id="o2"></div>
+                    <div class="o" id="o3"></div>
+                    <div class="o" id="o4"></div>
+                    <div class="o" id="o5"></div>
+                    <div class="o" id="o6"></div>
+                    <div class="o" id="o7"></div>
+                </div>
+            </div>  
+
+            <div class="conatiner-fluid d-flex" id="controls">
+                <div class="layer1" id="l11"> <div class="layer2" id="l12"> <div class="layer3" id="l13">
+                    <button class="controller rock" onclick="input(1)" onmousedown="buttoneffectsd(1)" onmouseup="buttoneffectsu(1)">
+                        <i class='fas fa-hand-rock'></i>
+                    </button>
+                </div></div></div>
+                <div class="layer1" id="l21"> <div class="layer2" id="l22"> <div class="layer3" id="l23">
+                    <button class="controller paper" onclick="input(2)" onmousedown="buttoneffectsd(2)" onmouseup="buttoneffectsu(2)">
+                        <i class='fas fa-hand-paper'></i>
+                    </button>
+                </div></div></div>
+                <div class="layer1" id="l31"> <div class="layer2" id="l32"> <div class="layer3" id="l33">
+                    <button class="controller scissor" onclick="input(3)" onmousedown="buttoneffectsd(3)" onmouseup="buttoneffectsu(3)" style="transform: rotate(90deg);">
+                        <i class='fas fa-hand-scissors'></i>
+                    </button>
+                </div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- script -->
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- #538dd7 -->
